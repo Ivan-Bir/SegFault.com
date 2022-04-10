@@ -1,0 +1,48 @@
+{% load static %}
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+  <meta charset="utf-8">
+  <title>SegFault</title>
+  <link rel="shortcut icon" href="{% static "img/short_logo.ico" %}" >
+
+  <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" >
+  <link rel="stylesheet" href="{% static "css/main.css" %}" >
+
+</head>
+
+<body class="d-flex flex-column h-100">
+
+  <header>
+    {% include "inc/navbar.html" %}
+    {% comment %} {% include "inc/navbar_autorised.html" %} {% endcomment %}
+  </header>
+
+  <!-- Begin page content -->
+  <main class="flex-shrink-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-10">
+          {% block content %}
+          {% endblock content %}
+        </div>
+
+        <div class="col-2">
+          {% include "inc/tags.html" %}
+          {% include "inc/best_members.html" %}
+        </div>
+
+      </div>
+    </div>
+
+    </div>
+  </main>
+
+  {% block pagin %}
+  {% endblock pagin %}
+
+  {% include "inc/footer.html" %}
+
+</body>
+</html>

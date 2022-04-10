@@ -1,0 +1,29 @@
+{% load static %}
+
+<h2 class="mt-5">New question</h2>
+
+<form>
+
+    <div class="mb-3 question-textarea-title">
+        <label for="QuestionTitle" class="form-label">Question title</label>
+        <input type="text" class="form-control" pattern="[A-z]{1,100}" id="QuestionTitle"
+            aria-describedby="QuestionTitle">
+        <div id="QuestionTitle" class="form-text">Input title of your question</div>
+    </div>
+
+    <div class="mb-3 question-textarea-text">
+        <label for="exampleFormControlTextarea1" class="form-label">Question</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+
+    <label for="QuestionTags" class="form-label">Tags</label>
+    <input type="text" pattern="[A-z]{1,30}" class="form-control question-textarea-tags"
+        id="QestionTags" aria-describedby="QestionTags">
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Notify me of responses by mail</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Post your question</button>
+</form>

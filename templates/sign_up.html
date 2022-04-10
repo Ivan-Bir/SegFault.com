@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <title>SegFault</title>
+    <link rel="shortcut icon" href="img/short_logo.ico">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="sticky-footer-navbar.css">
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">SegFault</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="ask.html">New qestion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My questions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">About</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex search-input navbar-not-autorised">
+                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+
+                    <a href="log_in.html" class="btn btn-outline-secondary log-in-btn">Log in</a>
+                    <a href="sign_up.html" class="btn btn-outline-secondary">Sign up</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main class="flex-shrink-0">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-10">
+
+                    <div class="form-signin">
+                        <form>
+                            <img class="mt-4 mb-4" src="img/logo.png" width="700" height="200">
+                            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                            <div class="form-floating log-in-field">
+                                <input type="email" class=" log-in-fields form-control" id="floatingInput"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Email address</label>
+                            </div>
+
+                            <div class="form-floating log-in-field">
+                                <input type="text" class=" log-in-fields form-control" id="floatingInputNick"
+                                    placeholder="Terminator228">
+                                <label for="floatingInputNick">Nickname</label>
+                            </div>
+
+                            <div class="form-floating log-in-field">
+                                <input type="password" class=" log-in-fields form-control" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Password</label>
+                            </div>
+
+                            <div class="form-floating log-in-field">
+                                <input type="password" class=" log-in-fields form-control" id="floatingPassword"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Confirm password</label>
+                            </div>
+
+                            <label for="floatingInputAvatar">Upload avatar</label>
+                            <input required type="file" class=" log-in-fields" id="floatingInputAvatar">
+
+
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" value="remember-me"> Remember me
+                                </label>
+                            </div>
+
+                            <button class="w-40 btn btn-lg btn-primary" type="submit">Sign up</button>
+
+                            <span class="pt-3"><br> <br>Already member?
+                                <a href="log_in.html" class="btn-link ">Log in</a>
+                            </span>
+                            <p class="mt-5 mb-3 text-muted">&copy; 2021–2022</p>
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-2">
+                    <h2 class="mt-5">Tags</h2>
+                    <div class="btn-group-vertical">
+                        <div class="tags-buttons">
+                            <a class="btn btn-dark">Python</a>
+                        </div>
+
+                        <div class="col-2 tags-buttons">
+                            <a href="index.html" class="btn btn-dark">c++11</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Qt</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Templates</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Boost</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Pointers</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">C#</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Cmake</a>
+                        </div>
+                        <a href="#" class="text-decoration-none tags-buttons">more related tags</a>
+                    </div>
+
+                    <h2 class="mt-5">Best members</h2>
+                    <div class="tags-buttons">
+                        <a href="index.html" class="link-info">Name</a>
+                    </div>
+
+                    <div class="tags-buttons">
+                        <a href="index.html" class="link-info">Name</a>
+                    </div>
+                    <div class="tags-buttons">
+                        <a href="index.html" class="link-info">Name</a>
+                    </div>
+
+                    <div class="tags-buttons">
+                        <a href="index.html" class="link-info">Name</a>
+                    </div>
+
+                    <div class="tags-buttons">
+                        <a href="#" class="text-decoration-none">more people</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <p class=" text-muted text-center">Copyright &copy; by Ivan Biryukov 2021-2022</p>
+    </footer>
+
+
+
+</body>
+
+</html>

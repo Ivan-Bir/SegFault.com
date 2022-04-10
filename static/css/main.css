@@ -1,0 +1,161 @@
+main > .container {
+    padding: 60px 15px 0;
+  }
+
+.question {
+    border: 3px solid gray;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.question-main {
+  margin: 20px;
+  padding: 10px;
+}
+
+.question-popular {
+  margin-left: 78px;
+}
+
+.avatar-question {
+  width: 120px;
+  height: 120px;
+  margin-left: 8px;
+  margin-top: 15px;
+}
+
+.avatar-question-inter {
+  width: 150px;
+  height: 150px;
+  margin-left: 8px;
+  margin-top: 15px;
+}
+
+.question-textarea-title {
+  width: 70%;
+}
+
+.question-textarea-text {
+  width: 70%;
+}
+
+.question-textarea-tags {
+  width: 35%;
+}
+
+.search-input {
+  width:60%;
+}
+
+.search-input-autorise {
+  width:75%;
+}
+
+.tags-buttons {
+  margin-top: 15px;
+}
+
+.likes-buttons {
+  margin-right: -10px;
+}
+
+.author-label {
+  margin-left: -100px;
+}
+
+.hr {
+  margin-left: -10px;
+}
+
+.answer-best {
+  border: 3px solid rgb(164, 164, 164);
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
+  width: 80%;
+}
+.author-label-best {
+  margin-left: -20px;
+}
+
+.answer-best-check {
+  margin-left: 20px;
+}
+
+.answer {
+  border: 3px solid rgb(192, 192, 192);
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
+  width: 70%;
+}
+.author-label-answer {
+  margin-left: -20px;
+}
+
+.answer-text {
+  margin-left: 30px;
+}
+
+.answer-tags {
+  margin-left: -40px;
+}
+
+.code {
+  font-size: 16px;
+}
+
+.navbar-autorised {
+  margin-right:40px;
+}
+
+.navbar-not-autorised {
+  margin-right:40px;
+}
+
+.navbar-settings-btn {
+  width: 95px;
+  margin-right: 10px;
+}
+
+.navbar-log-out-btn {
+  width: 95px;
+}
+
+.avatar-user {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  margin-top: -10px;
+  margin-bottom: -20px;
+  border-radius: 7px;
+}
+
+.log-in-btn {
+  margin-right: 10px;
+}
+
+.log-in-fields {
+  width: 400px;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.log-in-logo {
+  margin-top: 50px;
+}
+
+.settings-nick-field {
+  width: 240px;
+  margin-bottom: 10px;
+}
+
+.settings-nick-btn {
+  width: 180px;
+}
+
+.padding{
+  margin-left: 22px;
+  margin-bottom: 30px;
+}

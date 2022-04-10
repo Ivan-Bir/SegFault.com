@@ -1,0 +1,38 @@
+{% extends "inc/base.html" %}
+{% load static %}
+
+{% block content %}
+  <h2 class="mt-5">Question</h2>
+
+  <div class="row">
+    <div class="col-2">
+      {% include "inc/question_on_page.html" %}
+  </div>
+
+  <hr class="hr">
+  <h3><a href=""{% url "question" question.id %}"" class="text-decoration-none text-dark">2 answers</a></h3>
+
+  {% include "inc/answer_best.html" %}
+
+  {% include "inc/answer.html" %}
+
+  <hr class="hr">
+  <div class="container">
+    <form>
+      <div class="mb-3 question-textarea-text">
+        <label for="exampleFormControlTextarea1" class="form-label">Your answer</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Notify me of responses by mail</label>
+      </div>
+      <button type="submit" class="btn btn-primary mb-5">Post your answer</button>
+    </form>
+  </div>
+{% endblock content %}
+
+{% block pagin %}
+  {% include "inc/pagination.html" %}
+{% endblock pagin %}
