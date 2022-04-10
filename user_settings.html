@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <title>SegFault</title>
+    <link rel="shortcut icon" href="img/short_logo.ico">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="sticky-footer-navbar.css">
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index_autorised.html">SegFault</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="ask.html">New qestion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My questions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">About</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex search-input-autorise">
+                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+                        <button class="btn btn-outline-success mr-10 navbar-autorised" type="submit">Search</button>
+
+                        <a href="user_settings.html"><img class="avatar-user" src="img/jailBot.PNG"></a>
+
+                        <a href="user_settings.html" class="btn btn-outline-secondary navbar-settings-btn">Settings</a>
+                        <a href="index.html" class="btn btn-outline-secondary navbar-log-out-btn text-nowrap">Log
+                            out</a>
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main class="flex-shrink-0">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-10">
+
+                    <div class="form-signin">
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <img class="mt-4 mb-4 img-thumbnail" src="img/jailBot.PNG" width="300" height="300">
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="row mt-5">
+                                    <div class="col-md-7 offset-md-1">
+                                        <h4>Email address:</h4>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <h5> <b> example@mail.ru </b></h5>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-7 offset-md-1">
+                                        <h4>Nickname:</h4>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <h5> <b> JailBot </b></h5>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-7 offset-md-1">
+                                        <h4>Registration date:</h4>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <h5> <b> 01.01.2022 </b></h5>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-7 offset-md-1">
+                                        <h4>Gender:</h4>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <h5> <b> Male </b></h5>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-7 offset-md-1">
+                                        <h4>Birth date:</h4>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <h5> <b> 07.07.2007 </b></h5>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-7 offset-md-1">
+                                        <h4>New nickname:</h4>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <form>
+                                            <div class="form-floating settings-nick-field">
+                                                <input type="text" class=" settings-nick-field form-control"
+                                                    id="floatingInputNick" placeholder="Terminator228">
+                                                <label for="floatingInputNick">Nickname</label>
+
+                                            </div>
+
+                                            <div>
+                                                <button class="settings-nick-btn btn btn-lg btn-primary"
+                                                    type="submit">Accept changes</button>
+                                            </div>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <form>
+
+                            <label for="floatingInputAvatar">
+                                <h5>Update avatar</h5>
+                            </label>
+                            <input required type="file" class=" log-in-fields" id="floatingInputAvatar">
+                            <br> <br> <br>
+                            <!-- <button class="w-40 btn btn-lg btn-primary" type="submit">Log out</button> -->
+                            <a href="index.html" class="w-40 btn btn-lg btn-dark">Log out</a>
+
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="col-2">
+                    <h2 class="mt-5">Tags</h2>
+                    <div class="btn-group-vertical">
+                        <div class="tags-buttons">
+                            <a class="btn btn-dark">Python</a>
+                        </div>
+
+                        <div class="col-2 tags-buttons">
+                            <a href="index.html" class="btn btn-dark">c++11</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Qt</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Templates</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Boost</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Pointers</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">C#</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Cmake</a>
+                        </div>
+                        <a href="#" class="text-decoration-none tags-buttons">more related tags</a>
+                    </div>
+
+                    <h2 class="mt-5">Best members</h2>
+                    <div class="tags-buttons">
+                        <a href="index.html" class="link-info">Name</a>
+                    </div>
+
+                    <div class="tags-buttons">
+                        <a href="index.html" class="link-info">Name</a>
+                    </div>
+                    <div class="tags-buttons">
+                        <a href="index.html" class="link-info">Name</a>
+                    </div>
+
+                    <div class="tags-buttons">
+                        <a href="index.html" class="link-info">Name</a>
+                    </div>
+
+                    <div class="tags-buttons">
+                        <a href="#" class="text-decoration-none">more people</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        </div>
+    </main>
+
+
+    <footer class="footer mt-auto py-3 bg-light ">
+        <p class=" text-muted text-center">Copyright &copy; by Ivan Biryukov 2021-2022</p>
+    </footer>
+
+
+</body>
+
+</html>
