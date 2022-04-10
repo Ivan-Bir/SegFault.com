@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <title>SegFault</title>
+    <link rel="shortcut icon" href="img/short_logo.ico">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="sticky-footer-navbar.css">
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index_autorised.html">SegFault</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="ask.html">New qestion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My questions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">About</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex search-input-autorise">
+                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+                        <button class="btn btn-outline-success mr-10 navbar-autorised" type="submit">Search</button>
+
+                        <a href="user_settings.html"><img class="avatar-user" src="img/jailBot.PNG"></a>
+
+                        <a href="user_settings.html" class="btn btn-outline-secondary navbar-settings-btn">Settings</a>
+                        <a href="index.html" class="btn btn-outline-secondary navbar-log-out-btn text-nowrap">Log
+                            out</a>
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main class="flex-shrink-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <h2 class="mt-5">Questions</h2>
+
+                    <form>
+
+                        <div class="mb-3 question-textarea-title">
+                            <label for="QuestionTitle" class="form-label">Question title</label>
+                            <input type="text" class="form-control" pattern="[A-z]{1,100}" id="QuestionTitle"
+                                aria-describedby="QuestionTitle">
+                            <div id="QuestionTitle" class="form-text">Input title of your question</div>
+                        </div>
+
+                        <div class="mb-3 question-textarea-text">
+                            <label for="exampleFormControlTextarea1" class="form-label">Question</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+
+                        <label for="QuestionTags" class="form-label">Tags</label>
+                        <input type="text" pattern="[A-z]{1,30}" class="form-control question-textarea-tags"
+                            id="QestionTags" aria-describedby="QestionTags">
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Notify me of responses by mail</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Post your question</button>
+                    </form>
+
+                </div>
+                <div class="col-2">
+                    <h2 class="mt-5">Tags</h2>
+
+                    <div class="btn-group-vertical">
+                        <div class="tags-buttons">
+                            <a class="btn btn-dark">Python</a>
+                        </div>
+
+                        <div class="col-2 tags-buttons">
+                            <a href="index.html" class="btn btn-dark">c++11</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Qt</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Templates</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Boost</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Pointers</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">C#</a>
+                        </div>
+
+                        <div class="tags-buttons">
+                            <a href="index.html" class="btn btn-dark">Cmake</a>
+                        </div>
+                        <a href="#" class="text-decoration-none tags-buttons">more related tags</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <p class=" text-muted text-center">Copyright &copy; by Ivan Biryukov 2021-2022</p>
+    </footer>
+
+
+</body>
+
+</html>
