@@ -10,7 +10,7 @@
   </div>
 
   <hr class="hr">
-  <h3><a href=""{% url "question" question.id %}"" class="text-decoration-none text-dark">2 answers</a></h3>
+  <h3><a href="{% url "question" data.question.id %}" class="text-decoration-none text-dark">2 answers</a></h3>
 
   {% include "inc/answer_best.html" %}
 

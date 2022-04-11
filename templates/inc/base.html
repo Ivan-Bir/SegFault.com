@@ -15,8 +15,12 @@
 <body class="d-flex flex-column h-100">
 
   <header>
-    {% include "inc/navbar.html" %}
-    {% comment %} {% include "inc/navbar_autorised.html" %} {% endcomment %}
+
+    {% if is_user_logged_in %}
+      {% include "inc/navbar_autorised.html" %}
+    {% else %}
+      {% include "inc/navbar.html" %}
+    {% endif %}
   </header>
 
   <!-- Begin page content -->

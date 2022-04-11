@@ -3,35 +3,35 @@
 <h2 class="mt-5">Tags</h2>
 <div class="btn-group-vertical">
     <div class="tags-buttons">
-      <a class="btn btn-dark">Python</a>
+      <a href="{% url "tag" data.tags.python %}" class="btn btn-dark">Python</a>
     </div>
 
     <div class="col-2 tags-buttons">
-      <a href="index.html" class="btn btn-dark">c++11</a>
+      <a href="{% url "tag" data.tags.cpp11 %}" class="btn btn-dark">c++11</a>
     </div>
 
     <div class="tags-buttons">
-      <a href="index.html" class="btn btn-dark">Qt</a>
+      <a href="{% url "tag" data.tags.qt %}" class="btn btn-dark">Qt</a>
     </div>
 
     <div class="tags-buttons">
-      <a href="index.html" class="btn btn-dark">Templates</a>
+      <a href="{% url "tag" data.tags.templates %}" class="btn btn-dark">Templates</a>
     </div>
 
     <div class="tags-buttons">
-      <a href="index.html" class="btn btn-dark">Boost</a>
+      <a href="{% url "tag" data.tags.boost %}" class="btn btn-dark">Boost</a>
     </div>
 
     <div class="tags-buttons">
-      <a href="index.html" class="btn btn-dark">Pointers</a>
+      <a href="{% url "tag" data.tags.pointers %}" class="btn btn-dark">Pointers</a>
     </div>
 
     <div class="tags-buttons">
-      <a href="index.html" class="btn btn-dark">C#</a>
+      <a href="{% url "tag" data.tags.c_sharp %}" class="btn btn-dark">C#</a>
     </div>
 
     <div class="tags-buttons">
-      <a href="index.html" class="btn btn-dark">Cmake</a>
+      <a href="{% url "tag" data.tags.cmake %}" class="btn btn-dark">Cmake</a>
     </div>
     <a href="#" class="text-decoration-none tags-buttons">more related tags</a>
   </div>
