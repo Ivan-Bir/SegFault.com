@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from app.models import Question, TagQuestion
 # Create your views here.
 
 QUESTIONS = []
@@ -16,15 +16,31 @@ NAME_TAGS = {"default" : "default_tag", "python" : "Python", "cpp11" : "cpp11", 
 
 DATA = {"questions" : QUESTIONS, "tags" : NAME_TAGS}
 
+def GetTags():
+    t = TagQuestion.objects.all()
+
+    tags = {}
+    for i in range(t.count()):
+        tags[(t[i].name_tag)] = t[i].name_tag
+    return tags
 
 def GetOneQuestion(i:int):
-    return {"question" : QUESTIONS[i%100], "tags" : NAME_TAGS}
+    quest = Question.object.filter(pk=i)
+    data = {"title" : quest[0].title_quest, "id": i, "text" : quest[0].text_quest}
+    return {"question" : data, "tags" : GetTags()}
 
 def GetRangeQuestions(index_begin:int, number:int):
-    return {"questions" : QUESTIONS[(((index_begin%100-1)*number)%100) : (((index_begin%100)*number)%100)] , "tags" : NAME_TAGS}
+    quest = Question.object.filter(pk__gt=index_begin, pk__lt=index_begin*number)
+
+    data =[]
+    for i in range(quest.count()):
+        data.append( {
+            "title" : quest[i].title_quest, "id": i+index_begin, "text" : quest[i].text_quest
+        })
+    return {"questions" : data , "tags" : GetTags()}
 
 def GetOnlyTags():
-    return {"question" : [], "tags" : NAME_TAGS}
+    return {"question" : [], "tags" : GetTags()}
 
 
 # begin views functions
