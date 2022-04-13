@@ -50,16 +50,16 @@
 
       <div class="col-4 btn author-label-best">
         <span>
-          <p> <b>Author:</b>&nbsp <a href="userpage/">user@mail.ru</a> </p>
+          <p> <b>Author:</b>&nbsp <a href="{% url "tag" "user_mail_ru" %}">user@mail.ru</a> </p>
         </span>
       </div>
 
       <div class="col-5">
         <div class="container">
           <a class="btn"> <b>Tags:</b></a>
-          <a href="/tag/Tag1" class="btn btn-link">Tag1</a>
-          <a href="/tag/Tag2" class="btn btn-link">Tag2</a>
-          <a href="/tag/Tag3" class="btn btn-link">Tag3</a>
+          <a href="{% url "tag" "tag1" %}" class="btn btn-link">Tag1</a>
+          <a href="{% url "tag" "tag2" %}" class="btn btn-link">Tag2</a>
+          <a href="{% url "tag" "tag3" %}" class="btn btn-link">Tag3</a>
         </div>
 
       </div>

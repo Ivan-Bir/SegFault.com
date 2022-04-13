@@ -25,9 +25,10 @@
             </div>
 
             <button class="w-40 btn btn-lg btn-primary" type="submit">Sign in</button>
+            {% comment %} <a href="{% url "signup" %}" class="w-40 btn btn-lg btn-primary">Sign in</a> {% endcomment %}
 
             <span class="pt-3"><br> <br>Not a member?
-                <a href="/sign_up/" class="btn-link ">Sign up</a>
+                <a href="{% url "signup" %}" class="btn-link ">Sign up</a>
             </span>
             <p class="mt-5 mb-3 text-muted">&copy; 2021–2022</p>
         </form>
