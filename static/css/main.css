@@ -83,6 +83,13 @@ main > .container {
   margin-left: 20px;
 }
 
+.answer-check-box {
+  margin-left: 68px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
 .answer {
   border: 3px solid rgb(192, 192, 192);
   border-radius: 5px;
@@ -159,3 +166,15 @@ main > .container {
   margin-left: 22px;
   margin-bottom: 30px;
 }
+
+.pages {
+  color: #525151;
+  border: solid lightgray;
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px;
+  display: inline-block;
+  margin: 2px 3px;
+  font-size: 1em;
+}
+

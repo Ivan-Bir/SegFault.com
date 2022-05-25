@@ -6,15 +6,27 @@
 
   <div class="row">
     <div class="col-2">
-      {% include "inc/question_on_page.html" %}
+      {% with question=content.question %}
+        {% include "inc/question_on_page.html" %}
+
   </div>
 
   <hr class="hr">
-  <h3><a href="{% url "question" data.question.id %}" class="text-decoration-none text-dark">2 answers</a></h3>
+  <h3><a href="{% url "question" question.id %}" class="text-decoration-none text-dark">2 answers</a></h3>
+  {% endwith %}
 
-  {% include "inc/answer_best.html" %}
+  {% comment %} {% with answer=content.answers %}
+    {% include "inc/answer_best.html" %}
+  {% endwith %} {% endcomment %}
+  {% for answer in content.answers %}
+    {% if answer.isCorrect %}
+      {% include "inc/answer_best.html" %}
+    {% else %}
+      {% include "inc/answer.html" %}
+    {% endif %}
 
-  {% include "inc/answer.html" %}
+  {% endfor %}
+
 
   <hr class="hr">
   <div class="container">
@@ -31,8 +43,10 @@
       <button type="submit" class="btn btn-primary mb-5">Post your answer</button>
     </form>
   </div>
+
+  {% with content=content.answers %}
+        {% include "inc/pagination.html" %}
+  {% endwith %}
+
 {% endblock content %}
 
-{% block pagin %}
-  {% include "inc/pagination.html" %}
-{% endblock pagin %}

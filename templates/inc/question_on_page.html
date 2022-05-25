@@ -8,8 +8,8 @@
 
     </div>
     <div class="col-10">
-      <h3><a href="{% url "question" data.question.id %}" class="text-dark answer-text">{{ data.question.title }}</a></h3>
-      <p class="answer-text"> {{ data.question.text }} </p>
+      <h3><a href="{% url "question" question.id %}" class="text-dark answer-text">{{ question.title }}</a></h3>
+      <p class="answer-text"> {{ question.text }} </p>
     </div>
 
     <div class="row">
@@ -48,11 +48,10 @@
       <div class="col-5">
         <div class="container">
           <a class="btn"> <b>Tags:</b></a>
-          <a href="{% url "tag" "tag1" %}" class="btn btn-link">Tag1</a>
-          <a href="{% url "tag" "tag2" %}" class="btn btn-link">Tag2</a>
-          <a href="{% url "tag" "tag3" %}" class="btn btn-link">Tag3</a>
+          {% for tag in question.tags.all %}
+            <a href="{% url "tag" tag.name %}" class="btn btn-link">{{ tag.name }}</a>
+          {% endfor %}
         </div>
-
       </div>
 
     </div>

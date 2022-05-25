@@ -13,19 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django import views
 from django.contrib import admin
 from django.urls import path
 from app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
+    path('popular/', views.popular, name="popular"),
+    path('latest/', views.latest, name="latest"),
     path('ask/', views.ask, name="ask"),
-    path('question/<str:i>', views.question, name="question"),
-    path('log_in/', views.log_in, name="login"),
-    path('sign_up/', views.sign_up, name="signup"),
-    path('tag/<str:name>', views.tag, name="tag"),
-    path('page/<str:i>', views.page, name="page"),
-    path('settings/<str:user>', views.settings, name="settings"),
+    path('question/<int:i>', views.question, name="question"),
+    path('tag/<str:i>', views.tag, name="tag"),
+    path('login/', views.login, name="login"),
+    path('signup/', views.signup, name="signup"),
+    path('settings/', views.settings, name="settings"),
 ]
+
+handler404 = "app.views.page_not_found_view"
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

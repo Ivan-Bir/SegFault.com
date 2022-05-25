@@ -1,133 +1,137 @@
+import django.contrib.auth.models
+import uuid
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models import Count, Sum
+from django.db.models import Count
+
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
 
 
-LIKE = '1'
-DISLIKE = '-1'
+# Managers
+class QuestionManager(models.Manager):
+    def latest_questions(self, count=5):
+        # return self.all().order_by('-id')[0:5]
+        return self.all().annotate(popular=Count('tags')).order_by('-id')[:count]
 
-#Managers
-class ResolvedQuestions(models.Manager):
-    def resolved_questions(self):
-        return self.filter(status = True)
+    def popular_questions(self, count=5):
+        # return self.all().order_by('-id')[0:5]
+        return self.all().annotate(popular=Count('question')).order_by('-id')[:count]
+
+
+class UsersManager(models.Manager):
+    def active_users(self, count=5):
+        # Profile.objects.all().annotate()
+        return self.annotate(answers_count=Count('answer')).order_by('-answers_count')[:count]
+
 
 class TagManager(models.Manager):
-    def top_tags(self, count=10):
-        return self.annotate(count=Count('tag_related')).order_by('-count')[:count]
+    def popular_tags(self, count=5):
+        return self.all().annotate(popular=Count('tags')).order_by('-popular')[:count]
 
-class AnswerManager(models.Manager):
-    def answer_by_question(self, id):
-        # return self.annotate(likes=Sum('answer_like__mark')).order_by('-likes').filter(question_id=id)
-        return self.annotate(likes=Sum('answer_like__mark')).order_by('pub_date').filter(question_id=id)
+# paths
 
-class QuestionManager(models.Manager):
-    def count_answers(self):
-        return self.annotate(answers=Count('answer_related', distinct=True))
-
-    def get_by_likes(self):
-        return self.count_answers().order_by('-rating')
-
-    def get_by_id(self, id):
-        return self.count_answers().get(id=id)
-
-    def by_tag(self, tag):
-        return self.count_answers().filter(tags__name=tag)
-
-    def new(self):
-        return self.count_answers().order_by('-publicate_date')
-
-    def hot(self):
-        return self.get_by_likes()
-
-#begin general classes
-class TagQuestion(models.Model):
-    name_tag = models.CharField(max_length=16)
-
-    def __str__(self):
-        return f"{self.name_tag}"
+def question_directory_path(instance, filename):
+    return 'question_image/{0}/{1}'.format(str(instance.u_id), filename)
 
 
+def user_avatar_directory_path(instance, filename):
+    return 'user_avatars/{0}/{1}'.format(str(instance.u_id), filename)
 
+
+def default_question_image_path():
+    return 'question_image/default/default_image.jpg'
+
+
+def default_user_avatar_path():
+    return 'user_avatars/default/default_avatar.jpg'
+
+
+# Models
 class Answer(models.Model):
-    # linked_question = models.ForeignKey(Question, models.CASCADE)
+    question = models.ForeignKey('Question', on_delete=models.CASCADE, related_name='answer')
+    author = models.ForeignKey('Profile', on_delete=models.PROTECT, related_name='answer')
 
-    author = models.CharField(max_length=64)
-    text_answer = models.TextField()
-    publicate_date = models.DateTimeField(blank=True, null=True)
-    last_update = models.DateTimeField(auto_now=True)
+    text = models.TextField()
 
-    rating_ans = models.IntegerField(default=0)
-    is_correct = models.BooleanField(default=False)
+    isCorrect = models.BooleanField(default=False)
 
-    objects = AnswerManager()
+    # date = models.DateTimeField(auto_now_add=True)
+
+    likes = GenericRelation('Like')
+    dislikes = GenericRelation('Dislike')
 
     def __str__(self):
-        return f"{self.publicate_date} {self.author}"
+        return ' '.join([str(self.id), self.text[:10]])
+
 
 class Question(models.Model):
-    title_quest = models.CharField(max_length=255)
-    text_quest = models.TextField()
-    publicate_date = models.DateTimeField(blank=True, null=True) #DateField
-    last_update = models.DateTimeField(auto_now=True)
-    author = models.CharField(max_length=64)
+    id = models.AutoField(primary_key=True, editable=False)
+    u_id = models.UUIDField(default=uuid.uuid4, editable=False)
 
-    tags = models.ManyToManyField(TagQuestion)
-    answers = models.ForeignKey(Answer, models.CASCADE, blank=True, null=True)
+    author = models.ForeignKey('Profile', on_delete=models.PROTECT, related_name='question')
 
-    rating_quest = models.IntegerField(default=0)
-    status = models.BooleanField(blank=True, default=False)
+    title = models.CharField(max_length=256)
+    text = models.TextField()
+    # image = models.ImageField(upload_to=question_directory_path, default=default_question_image_path)
+    tags = models.ManyToManyField('Tag', related_name='tags')
 
-    object = ResolvedQuestions()
+    # date = models.DateTimeField(auto_now_add=True)
+
+    likes = GenericRelation('Like')
+    dislikes = GenericRelation('Dislike')
+
+    # counter_votes = models.IntegerField(default=0)
+    # counter_answers = models.IntegerField(default=0)
+    # counter_ve = models.IntegerField(default=0)
+
+    objects = QuestionManager()
 
     def __str__(self):
-        return f"{self.title_quest} {self.text_quest} {self.author} {self.publicate_date}"
+        return ' '.join([str(self.id), self.title])
 
+
+class Tag(models.Model):
+    name = models.CharField(max_length=256)
+
+    objects = TagManager()
+
+    def __str__(self):
+        return ' '.join([self.name])
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False, related_name='profile_related')
-    registration_date = models.DateTimeField()
-    GENDER = [
-        ('m', 'Male'),
-        ('f', 'Female'),
-        ('o', 'Other')
-    ]
-    gender = models.CharField(max_length=1, choices=GENDER)
+    id = models.AutoField(primary_key=True, editable=False)
+    u_id = models.UUIDField(default=uuid.uuid4, editable=False)
 
-    avatar = models.ImageField(upload_to="img/" + str(user) + ".png" , default = "img/fishman.png")
+    user = models.OneToOneField(django.contrib.auth.models.User, on_delete=models.CASCADE, related_name='profile')
+    nickname = models.CharField(max_length=256)
+    avatar = models.ImageField(upload_to=user_avatar_directory_path, default=default_user_avatar_path)
 
-    count_questions = models.IntegerField(default=0)
-    count_answers = models.IntegerField(default=0)
-    count_resolved_answers = models.IntegerField(default=0)
+    # date = models.DateTimeField(auto_now_add=True)
 
-class LikeQuestion(models.Model):
-    MARK = [
-        (LIKE, 'Like'),
-        (DISLIKE, "Dislike"),
-    ]
-    mark = models.IntegerField(choices=MARK)
-    question = models.ForeignKey(Question, related_name="question_like", on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    pub_date = models.DateTimeField(auto_now=True)
+    objects = UsersManager()
+
+    def __str__(self):
+        return ' '.join([str(self.id), self.nickname])
 
 
-class LikeAnswer(models.Model):
-    MARK = [
-        (LIKE, 'Like'),
-        (DISLIKE, "Dislike"),
-    ]
-    mark = models.IntegerField(choices=MARK)
-    answer = models.ForeignKey(Answer, related_name="answer_like", on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    pub_date = models.DateTimeField(auto_now=True)
+class Like(models.Model):
+    counter = models.PositiveIntegerField(default=0)
+    users = models.ForeignKey('Profile', related_name='likes', on_delete=models.PROTECT)
+    content_type = models.OneToOneField(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveBigIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    def __str__(self):
+        return ' '.join(str(self.object_id), str(self.counter))
 
 
+class Dislike(models.Model):
+    counter = models.PositiveIntegerField(default=0)
+    users = models.ForeignKey('Profile', related_name='dislikes', on_delete=models.PROTECT)
+    content_type = models.OneToOneField(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveBigIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
 
-class QuestionInstance(models.Model):
-    question = models.ForeignKey(Question, models.CASCADE)
-    STATUSES = [
-        ('m', 'On_moderation'),
-        ('p', 'Published'),
-        ('b', 'Banned')
-    ]
-    status = models.CharField(max_length=1, choices=STATUSES, default='m')
+    def __str__(self):
+        return ' '.join(str(self.object_id), str(self.counter))

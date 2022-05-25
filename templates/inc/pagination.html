@@ -1,15 +1,34 @@
 {% load static %}
-<div class="container">
+<div class="row">
+    <div class="d-flex justify-content-center">
+        <div class="pagination">
+        <span class="step-links">
 
-    <div class="padding">
-      <div class="btn btn-dark">1</div>
-      <a class="btn btn-dark" href="{% url "page" 2 %}" rel="" title="Go to page 2">2</a>
-      <a class="btn btn-dark" href="{% url "page" 3 %}" rel="" title="Go to page 3">3</a>
-      <a class="btn btn-dark" href="{% url "page" 4 %}" rel="" title="Go to page 4">4</a>
-      <a class="btn btn-dark" href="{% url "page" 5 %}" rel="" title="Go to page 5">5</a>
-      <span class="fs-2"> ....</span>
-      <a class="btn btn-dark" href="{% url "page" 1337 %}" rel="" title="Go to page 1337">1337</a>
-      <a class="btn btn-dark" href="{% url "page" 0 %}" rel="next" title="Go to page 2"> Next</a>
+            <a class="btn btn-dark" href="?page=1" rel="" title="Go to page 1">1</a>
+
+            {% if content.has_previous %}
+                <a class="btn btn-dark" href="?page={{ content.previous_page_number }}" rel="" title="Go to page {{ content.previous_page_number }}
+                      "> < </a>
+            {% endif %}
+            {% if not content.has_previous %}
+              <a class="btn btn-dark disabled" href="" rel="" title=""> < </a>
+            {% endif %}
+
+            <span class="current">
+                <span class="pages">Page {{ content.number }} of {{ content.paginator.num_pages }} </span>
+            </span>
+
+            {% if content.has_next %}
+                 <a class="btn btn-dark" href="?page={{ content.next_page_number }}" rel="" title="Go to page {{ content.next_page_number }}
+                      "> > </a>
+            {% endif %}
+            {% if not content.has_next %}
+                <a class="btn btn-dark disabled" href="" rel="" title=""> > </a>
+            {% endif %}
+            <a class="btn btn-dark" href="?page={{ content.paginator.num_pages }}" rel=""
+                    title="Go to page{{ content.paginator.num_pages }}">{{ content.paginator.num_pages }}</a>
+
+          </span>
+        </div>
     </div>
-
-  </div>
+</div>

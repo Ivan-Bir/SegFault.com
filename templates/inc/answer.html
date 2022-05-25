@@ -6,13 +6,7 @@
 
     </div>
     <div class="col-10">
-      <p class="answer-text"> {{question.id}} :  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the
-        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-        into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-        release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-        software like Aldus PageMaker including versions of Lorem Ipsum</p>
+      <p class="answer-text"> {{answer.text}} </p>
     </div>
 
     <div class="row">
@@ -40,22 +34,20 @@
         </div>
         <span class="text-danger">13</span>
 
+        <div class="answer-check-box">
+          {% if answer.isCorrect %}
+              <input class="answer-check-box form-check-input" type="checkbox" value="" checked>
+          {% else %}
+              <input class="answer-check-box form-check-input" type="checkbox" value="">
+          {% endif %}
+        </div>
+
       </div>
 
       <div class="col-4 btn author-label-answer">
         <span>
           <p> <b>Author:</b>&nbsp <a href="{% url "tag" "user" %}">user@mail.ru</a> </p>
         </span>
-      </div>
-
-      <div class="col-5">
-        <div class="container">
-          <a class="btn answer-tags"> <b>Tags:</b></a>
-          <a href="{% url "tag" "tag1" %}" class="btn btn-link">Tag1</a>
-          <a href="{% url "tag" "tag2" %}" class="btn btn-link">Tag2</a>
-          <a href="{% url "tag" "tag3" %}" class="btn btn-link">Tag3</a>
-        </div>
-
       </div>
 
     </div>

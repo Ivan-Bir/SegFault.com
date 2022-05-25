@@ -33,8 +33,11 @@
         </div>
 
         <div class="col-2">
-          {% include "inc/tags.html" %}
-          {% include "inc/best_members.html" %}
+          {% with active_users=content.active_users hot_tags=content.popular_tags %}
+              {% include "inc/tags.html" %}
+              {% include "inc/best_members.html" %}
+          {% endwith %}
+
         </div>
 
       </div>
