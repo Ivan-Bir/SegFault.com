@@ -2,9 +2,9 @@
 
 <img class="avatar-question-inter" src="{% static "img/4.jpg" %}">
 
-      <a class="btn"> <b>votes :</b>&nbsp 10</a>
-      <a class="btn btn-outline-success"> <b>answers:</b>&nbsp 5</a>
-      <a class="btn"> <b>views:</b>&nbsp 75</a>
+      <a class="btn"> <b>votes :</b>&nbsp {{question.counter_votes}}</a>
+      <a class="btn btn-outline-success"> <b>answers:</b>&nbsp {{question.counter_answers}}</a>
+      <a class="btn"> <b>views:</b>&nbsp {{question.counter_views}}</a>
 
     </div>
     <div class="col-10">

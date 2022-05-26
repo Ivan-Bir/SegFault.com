@@ -12,19 +12,18 @@
   </div>
 
   <hr class="hr">
-  <h3><a href="{% url "question" question.id %}" class="text-decoration-none text-dark">2 answers</a></h3>
+  <h3><a href="{% url "question" question.id %}" class="text-decoration-none text-dark">{{content.answers.paginator.count}} Answers</a></h3>
   {% endwith %}
-
-  {% comment %} {% with answer=content.answers %}
-    {% include "inc/answer_best.html" %}
-  {% endwith %} {% endcomment %}
   {% for answer in content.answers %}
     {% if answer.isCorrect %}
       {% include "inc/answer_best.html" %}
-    {% else %}
+    {% endif %}
+  {% endfor %}
+
+  {% for answer in content.answers %}
+    {% if not answer.isCorrect %}
       {% include "inc/answer.html" %}
     {% endif %}
-
   {% endfor %}
 
 
