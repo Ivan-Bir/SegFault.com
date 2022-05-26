@@ -96,19 +96,19 @@ class Command(BaseCommand):
             question_list.append(cur_question)
 
 
-        q_list = Question.objects.bulk_create(question_list)
+        # q_list = Question.objects.bulk_create(question_list)
         print("list_ques done")
         min_id_tag = Tag.objects.order_by('id')[0].id
         max_id_tag = Tag.objects.order_by('-id')[0].id
 
         for i in range(count):
-            q_list[i].save()
+            question_list[i].save()
             tags_count_quiestion = random.randint(1, 3)
             for j in range(tags_count_quiestion):
                 tag = Tag.objects.get(
                     id=random.randint(min_id_tag, max_id_tag))
 
-                q_list[i].tags.add(tag)
+                question_list[i].tags.add(tag)
 
         print("Question DONE")
 
