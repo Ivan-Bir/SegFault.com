@@ -11,18 +11,15 @@
   </div>
 
   <hr class="hr">
-  {% comment %} {% with movie.id|stringformat:"s" as movie_id %}
-<p>Testing ID: "{{ movie_id }}"<p/>
-{% endwith %} {% endcomment %}
   <h3><a href="{% url "question" question.id %}" class="text-decoration-none text-dark">{{answers.paginator.count}} Answers</a></h3>
   {% for answer in answers %}
-    {% if answer.isCorrect %}
+    {% if answer.is_correct %}
       {% include "inc/answer_best.html" %}
     {% endif %}
   {% endfor %}
 
   {% for answer in answers %}
-    {% if not answer.isCorrect %}
+    {% if not answer.is_correct %}
       {% include "inc/answer.html" %}
     {% endif %}
   {% endfor %}
