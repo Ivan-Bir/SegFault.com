@@ -11,28 +11,6 @@ top_users = Profile.objects.get_top_users(10)
 
 USER = {"is_auth": False}
 
-# # def index(request):
-# #     paginator = Paginator(Question.objects.all(), 20)
-# #     page = request.GET.get('page')
-# #     content = {
-# #         'questions': paginator.get_page(page),
-# #         "active_users": Profile.objects.active_users,
-# #         "popular_tags": Tag.objects.popular_tags,
-# #     }
-# #     return render(request, "index.html", {"content": content})
-
-
-# # def question(request, i: int):
-# #     paginator = Paginator(Answer.objects.filter(question_id=i), 5)
-# #     page = request.GET.get('page')
-# #     content = {
-# #         "question": Question.objects.get(id=i),
-# #         "answers": paginator.get_page(page),
-# #         "active_users": Profile.objects.active_users,
-# #         "popular_tags": Tag.objects.popular_tags,
-# #     }
-# #     return render(request, "question_page.html", {"content": content})
-
 def index(request):
     questions = Question.objects.new()
     page_obj = paginate(questions, request, 10)
