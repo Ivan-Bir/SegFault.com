@@ -16,7 +16,7 @@
 
   <header>
 
-    {% if is_user_logged_in %}
+    {% if auth == True %}
       {% include "inc/navbar_autorised.html" %}
     {% else %}
       {% include "inc/navbar.html" %}
@@ -33,10 +33,8 @@
         </div>
 
         <div class="col-2">
-          {% with active_users=content.active_users hot_tags=content.popular_tags %}
               {% include "inc/tags.html" %}
               {% include "inc/best_members.html" %}
-          {% endwith %}
 
         </div>
 

@@ -188,6 +188,9 @@ class QuestionManager(models.Manager):
     def new(self):
         return self.count_answers().order_by('-publish_date')
 
+    def old(self):
+        return self.count_answers().order_by('publish_date')
+
     def hot(self):
         return self.count_answers().order_by('-rating')
 
@@ -206,6 +209,10 @@ class Question(models.Model):
     publish_date = models.DateTimeField(auto_now_add=True)
 
     rating = models.IntegerField(default=0)
+
+    counter_votes = models.IntegerField(default=0)
+    counter_answers = models.IntegerField(default=0)
+    counter_views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title

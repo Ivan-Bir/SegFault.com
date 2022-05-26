@@ -6,21 +6,22 @@
 
   <div class="row">
     <div class="col-2">
-      {% with question=content.question %}
         {% include "inc/question_on_page.html" %}
 
   </div>
 
   <hr class="hr">
-  <h3><a href="{% url "question" question.id %}" class="text-decoration-none text-dark">{{content.answers.paginator.count}} Answers</a></h3>
-  {% endwith %}
-  {% for answer in content.answers %}
+  {% comment %} {% with movie.id|stringformat:"s" as movie_id %}
+<p>Testing ID: "{{ movie_id }}"<p/>
+{% endwith %} {% endcomment %}
+  <h3><a href="{% url "question" question.id %}" class="text-decoration-none text-dark">{{answers.paginator.count}} Answers</a></h3>
+  {% for answer in answers %}
     {% if answer.isCorrect %}
       {% include "inc/answer_best.html" %}
     {% endif %}
   {% endfor %}
 
-  {% for answer in content.answers %}
+  {% for answer in answers %}
     {% if not answer.isCorrect %}
       {% include "inc/answer.html" %}
     {% endif %}
@@ -43,7 +44,7 @@
     </form>
   </div>
 
-  {% with content=content.answers %}
+  {% with content=answers %}
         {% include "inc/pagination.html" %}
   {% endwith %}
 

@@ -26,10 +26,11 @@ urlpatterns = [
     path('latest/', views.latest, name="latest"),
     path('ask/', views.ask, name="ask"),
     path('question/<int:i>', views.question, name="question"),
-    path('tag/<str:i>', views.tag, name="tag"),
+    path('tag/<str:tag>', views.tag, name="tag"),
     path('login/', views.login, name="login"),
     path('signup/', views.signup, name="signup"),
     path('settings/', views.settings, name="settings"),
+    path('logout/', views.logout, name='logout'),
 ]
 
 # urlpatterns = [
@@ -41,11 +42,11 @@ urlpatterns = [
 #     path('signup/', views.signup, name='signup'),
 #     path('login/', views.login, name='login'),
 #     path('settings/', views.settings, name='settings'),
-#     path('logout/', views.logout, name='logout'),
+#
 # ]
 
-handler404 = "app.views.page_not_found_view"
+# handler404 = "app.views.page_not_found_view"
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL,
+#                           document_root=settings.MEDIA_ROOT)

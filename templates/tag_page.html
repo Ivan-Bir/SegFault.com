@@ -1,4 +1,4 @@
-{% extends "inc/base.html" %}
+  {% extends "inc/base.html" %}
 {% load static %}
 
 {% block content %}
@@ -11,12 +11,12 @@
     </div>
   </div>
 
-  {% for question in content.questions %}
+  {% for question in questions %}
     {% include "inc/question.html" %}
   {% endfor %}
 
-  {% with content=content.questions %}
+  {% with content=questions %}
         {% include "inc/pagination.html" %}
   {% endwith %}
-{% endblock content %}
 
+{% endblock content %}

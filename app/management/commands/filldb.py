@@ -252,7 +252,7 @@ class Command(BaseCommand):
         for i in range(count):
             if (i % 10000 == 0):
                 print(f"PROGRESS {i / count * 100}%")
-            tags_count_quiestion = random.randint(1, 5)
+            # tags_count_quiestion = random.randint(1, 5)
             text = self.faker.paragraph(random.randint(7, 20))
             profile_id = random.randint(min_id_prof, max_id_prof)
             title = self.faker.paragraph(random.randint(7, 20))
@@ -260,18 +260,26 @@ class Command(BaseCommand):
             title = self.faker.paragraph(1)[:-1] + '?'
             tag_list = list()
             cur_question = Question(
-                text=text, title=title, profile_id=profile_id)
+                                    text=text,
+                                    title=title,
+                                    profile_id=profile_id,
+                                    counter_votes = i*10+2,
+                                    counter_answers = (i*10+2)/2 + 3,
+                                    counter_views = i*i + 11
+                                    )
             question_list.append(cur_question)
             question_list[i].save()
 
         q_list = Question.objects.bulk_create(question_list)
         print("list_ques done")
+        min_id_tag = Tag.objects.order_by('id')[0].id
+        max_id_tag = Tag.objects.order_by('-id')[0].id
         for i in range(count):
-
             tags_count_quiestion = random.randint(1, 3)
+            # tag_rand_id = random.randint(min_id_prof, max_id_prof)
             for j in range(tags_count_quiestion):
                 tag = Tag.objects.get(
-                    id=random.randint(tag_id, tag_id + tags_count - 1))
+                    id=random.randint(min_id_tag, max_id_tag))
                 # print("-------------------")
 
                 question_list[i].tags.add(tag)

@@ -3,7 +3,7 @@
 
   {% for user in active_users %}
     <div class="tags-buttons">
-      <a href="{% url "tag" "name" %}" class="link-info">{{ user.nickname }}</a>
+      <a href="{% url "tag" "name" %}" class="link-info">{{ user.username }}</a>
     </div>
 
   {% endfor %}

@@ -11,11 +11,11 @@
     </div>
   </div>
 
-  {% for question in content.questions %}
+  {% for question in questions %}
     {% include "inc/question.html" %}
   {% endfor %}
 
-  {% with content=content.questions %}
+  {% with content=questions %}
         {% include "inc/pagination.html" %}
   {% endwith %}
 
