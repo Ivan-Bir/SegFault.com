@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap4 %}
 <!doctype html>
 <html lang="en" class="h-100">
 
@@ -16,7 +17,8 @@
 
   <header>
 
-    {% if auth == True %}
+    {% comment %} {% if auth == True %} {% endcomment %}
+    {% if user.is_authenticated %}
       {% include "inc/navbar_autorised.html" %}
     {% else %}
       {% include "inc/navbar.html" %}

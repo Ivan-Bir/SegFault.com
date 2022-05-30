@@ -1,5 +1,6 @@
 {% extends "inc/base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block content %}
 <div class="form-signin">
@@ -91,7 +92,7 @@
     </div>
 
 
-    <form>
+    {% comment %} <form>
 
         <label for="floatingInputAvatar">
             <h5>Update avatar</h5>
@@ -101,7 +102,17 @@
         <!-- <button class="w-40 btn btn-lg btn-primary" type="submit">Log out</button> -->
         <a href="{% url "logout" %}" class="w-40 btn btn-lg btn-dark">Log out</a>
 
-    </form>
+    </form> {% endcomment %}
+
+    <div class="col-7 mt-5">
+        <h3>Settings</h3>
+        <form action="/settings/" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
 </div>
 
 {% endblock content %}

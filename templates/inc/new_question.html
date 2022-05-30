@@ -1,8 +1,8 @@
 {% load static %}
-
+{%load bootstrap4%}
 <h2 class="mt-5">New question</h2>
 
-<form>
+{% comment %} <form>
 
     <div class="mb-3 question-textarea-title">
         <label for="QuestionTitle" class="form-label">Question title</label>
@@ -26,4 +26,12 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Post your question</button>
-</form>
+</form> {% endcomment %}
+
+<div class="row">
+    <form action="/ask/" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">Post your question</button>
+    </form>
+</div>
