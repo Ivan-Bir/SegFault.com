@@ -9,6 +9,30 @@
 
         <div class="col-md-4">
             <img class="mt-4 mb-4 img-thumbnail" src="{% static "img/jailBot.PNG" %}" width="300" height="300">
+
+            <div class="row">
+                <div class="col-md-6 offset-md-1">
+                    <h7>Total questions:</h7>
+                </div>
+                <div class="col-md-4">
+                    <h7> <b> {{profile.counter_questions}} x </b></h7>
+                </div>
+
+                <div class="col-md-6 offset-md-1">
+                    <h7>Total answers:</h7>
+                </div>
+                <div class="col-md-4">
+                    <h7> <b> {{profile.counter_answers}} y </b></h7>
+                </div>
+
+                <div class="col-md-6 offset-md-1">
+                    <h7>Correct answers:</h7>
+                </div>
+                <div class="col-md-4">
+                    <h7> <b> {{profile.counter_resolved_answers}} z </b></h7>
+                </div>
+            </div>
+
         </div>
 
         <div class="col-md-4">
@@ -18,7 +42,7 @@
                 </div>
 
                 <div class="col-md-1">
-                    <h5> <b> example@mail.ru </b></h5>
+                    <h5> <b> {{user.email}} </b></h5>
                 </div>
             </div>
 
@@ -28,7 +52,7 @@
                 </div>
 
                 <div class="col-md-1">
-                    <h5> <b> JailBot </b></h5>
+                    <h5> <b> {{user.username}} </b></h5>
                 </div>
             </div>
 
@@ -38,7 +62,7 @@
                 </div>
 
                 <div class="col-md-1">
-                    <h5> <b> 01.01.2022 </b></h5>
+                    <h5> <b> {{user.date_joined}} </b></h5>
                 </div>
             </div>
 
@@ -68,12 +92,12 @@
                 </div>
 
                 <div class="col-md-1">
+
                     <form>
                         <div class="form-floating settings-nick-field">
                             <input type="text" class=" settings-nick-field form-control"
                                 id="floatingInputNick" placeholder="Terminator228">
                             <label for="floatingInputNick">Nickname</label>
-
                         </div>
 
                         <div>
@@ -81,7 +105,6 @@
                                 type="submit">Accept changes</button>
                         </div>
                     </form>
-
 
                 </div>
             </div>
@@ -105,7 +128,7 @@
     </form> {% endcomment %}
 
     <div class="col-7 mt-5">
-        <h3>Settings</h3>
+        <h3>Change your data</h3>
         <form action="/settings/" method="POST">
             {% csrf_token %}
             {% bootstrap_form form %}

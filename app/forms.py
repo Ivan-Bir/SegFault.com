@@ -1,16 +1,12 @@
-from cProfile import label
-from dataclasses import field
 from django import forms
 from django.contrib.auth.models import User
 from app.models import Question, Tag, Profile, Answer
 
 
-
-from django.contrib.auth.decorators import login_required
-
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"class": "mb-3"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "mb-3"}))
+
 
 class SignUpForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "mb-3"}))
@@ -55,23 +51,10 @@ class SignUpForm(forms.ModelForm):
 
         return profile
 
+
 class QuestionForm(forms.ModelForm):
-
     tags = forms.CharField(widget=forms.TextInput(attrs={"class": "mb-3",
-                                                         "placeholder": "Input one or few tags"}), label="Tags")
-
-    def save(self, user):
-        question = super().save(commit=False)
-        question.profile = user
-        question.save()
-        tags_list = self.cleaned_data["tags"].split()
-        for tag in tags_list:
-            new = Tag.objects.get_or_create(name=tag)
-            question.tags.add(new[0].id)
-        question.save()
-
-        return question
-
+                                                         "placeholder": "Input one or few tags",}), label="Tags")
     class Meta:
         model = Question
         fields = ['title', 'text']
@@ -84,6 +67,18 @@ class QuestionForm(forms.ModelForm):
             "title": forms.TextInput(attrs={"class": "mb-3"}),
             "text": forms.Textarea(attrs={"class": "mb-3"}),
         }
+
+    def save(self, user):
+        question = super().save(commit=False)
+        question.profile = user
+        question.save()
+        tags_list = self.cleaned_data["tags"].split()
+        for tag in tags_list:
+            new = Tag.objects.get_or_create(name=tag)
+            question.tags.add(new[0].id)
+        question.save()
+
+        return question
 
 class AnswerForm(forms.ModelForm):
     class Meta:

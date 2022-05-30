@@ -196,6 +196,7 @@ def login(request):
 @login_required(login_url="login", redirect_field_name="continue")
 def settings(request):
     user = User.objects.get(id=request.user.id)
+    # profile = Profile.objects.select_related().filter(user=request.user.id)[0]
 
     if request.method == "GET":
         form = SettingsForm(instance=user)
@@ -208,7 +209,8 @@ def settings(request):
     content = {
         "active_users": top_users,
         "popular_tags": Tag.objects.top_tags(10),
-        "form": form
+        "form": form,
+        # "profile" : profile,
     }
 
     return render(request, "setting_page.html", content)
