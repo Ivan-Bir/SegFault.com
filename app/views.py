@@ -204,8 +204,7 @@ def settings(request):
         initial_data['avatar'] = request.user.profile.avatar
         form = SettingsForm(initial=initial_data)
     if request.method == "POST":
-        instance = request.user
-        form = SettingsForm(request.POST, instance=instance, files=request.FILES)
+        form = SettingsForm(initial=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect("settings")
