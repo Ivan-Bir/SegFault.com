@@ -8,28 +8,32 @@
     <div class="row">
 
         <div class="col-md-4">
-            <img class="mt-4 mb-4 img-thumbnail" src="{% static "img/jailBot.PNG" %}" width="300" height="300">
+            {% comment %} <img class="mt-4 mb-4 img-thumbnail" src="{% static "img/jailBot.PNG" %}" width="300" height="300"> {% endcomment %}
+            {%if request.user.profile.avatar %}
+                <img class="mt-4 mb-4 img-thumbnail" src="{{ request.user.profile.avatar.url }}"
+                    width="300px" height="300px">
+            {% endif %}
 
             <div class="row">
                 <div class="col-md-6 offset-md-1">
                     <h7>Total questions:</h7>
                 </div>
                 <div class="col-md-4">
-                    <h7> <b> {{profile.counter_questions}} x </b></h7>
+                    <h7> <b> {{user.profile.counter_questions}} </b></h7>
                 </div>
 
                 <div class="col-md-6 offset-md-1">
                     <h7>Total answers:</h7>
                 </div>
                 <div class="col-md-4">
-                    <h7> <b> {{profile.counter_answers}} y </b></h7>
+                    <h7> <b> {{user.profile.counter_answers}} </b></h7>
                 </div>
 
                 <div class="col-md-6 offset-md-1">
                     <h7>Correct answers:</h7>
                 </div>
                 <div class="col-md-4">
-                    <h7> <b> {{profile.counter_resolved_answers}} z </b></h7>
+                    <h7> <b> {{user.profile.counter_resolved_answers}} </b></h7>
                 </div>
             </div>
 
@@ -129,7 +133,7 @@
 
     <div class="col-7 mt-5">
         <h3>Change your data</h3>
-        <form action="/settings/" method="POST">
+        <form action="/settings/" method="post", enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
             <button type="submit" class="btn btn-primary">Save</button>

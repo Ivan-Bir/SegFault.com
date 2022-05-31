@@ -1,5 +1,7 @@
 
+from django.forms import model_to_dict
 from django.shortcuts import redirect, render
+from pkg_resources import require
 from paginator import paginate
 from django.core.paginator import Paginator
 from app.models import *
@@ -8,6 +10,7 @@ from django.contrib import auth
 from app.forms import LoginForm,  QuestionForm, SettingsForm, SignUpForm, AnswerForm
 from django.core.cache import cache
 from segfault.settings import LOGIN_URL
+from django.views.decorators.http import require_http_methods
 
 from django.contrib.auth.decorators import login_required
 
@@ -142,7 +145,7 @@ def signup(request):
     if request.method == "GET":
         form = SignUpForm()
     if request.method == "POST":
-        form = SignUpForm(data=request.POST)
+        form = SignUpForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             profile = form.save()
             auth.login(request, profile.user)
@@ -194,14 +197,15 @@ def login(request):
 
 
 @login_required(login_url="login", redirect_field_name="continue")
+@require_http_methods(['GET', 'POST'])
 def settings(request):
-    user = User.objects.get(id=request.user.id)
-    # profile = Profile.objects.select_related().filter(user=request.user.id)[0]
-
     if request.method == "GET":
-        form = SettingsForm(instance=user)
+        initial_data = model_to_dict(request.user)
+        initial_data['avatar'] = request.user.profile.avatar
+        form = SettingsForm(initial=initial_data)
     if request.method == "POST":
-        form = SettingsForm(request.POST, instance=user)
+        instance = request.user
+        form = SettingsForm(request.POST, instance=instance, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect("settings")
@@ -210,7 +214,6 @@ def settings(request):
         "active_users": top_users,
         "popular_tags": Tag.objects.top_tags(10),
         "form": form,
-        # "profile" : profile,
     }
 
     return render(request, "setting_page.html", content)

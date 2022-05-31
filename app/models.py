@@ -10,7 +10,7 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-    avatar = models.ImageField(null=True, blank=True)
+    avatar = models.ImageField(null=True, blank=True, default='fishman.png', upload_to='avatar/%Y/%m/%d/')
 
     counter_questions = models.IntegerField(default=0)
     counter_answers = models.IntegerField(default=0)

@@ -12,6 +12,9 @@ class SignUpForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "mb-3"}))
     password_repeat = forms.CharField(widget=forms.PasswordInput(attrs={"class": "mb-3"}))
 
+    avatar = forms.ImageField(label="Avatar images", required=False, widget=forms.FileInput(
+        attrs={"class": "col-md-9 pe-5 mb-3"}))
+
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name']
@@ -34,17 +37,18 @@ class SignUpForm(forms.ModelForm):
         if pass1 != pass2:
             self.add_error('password_repeat', "Passwords do not match")
 
-        count_usrs_email = User.objects.filter(email=self.cleaned_data['email']).count()
+        if ('email' in cleaned_data.keys()):
+            count_usrs_email = User.objects.filter(email=cleaned_data['email']).count()
+            if count_usrs_email > 0:
+                self.add_error('email', "User with this email is already registered")
 
-        if count_usrs_email > 0:
-            self.add_error('email', "User with this email is already registered")
-
-    def save(self, commit=True):
-        user = super().save(commit=False)
+    def save(self, commit=True): #
+        user = super().save(commit=False) #
         user.set_password(self.cleaned_data['password'])
 
         user.save()
         profile = Profile.objects.create(user=user)
+        profile.avatar = self.cleaned_data['avatar']
 
         if commit:
             profile.save()
@@ -93,8 +97,9 @@ class AnswerForm(forms.ModelForm):
         }
 
 class SettingsForm(forms.ModelForm):
-    avatar = forms.FileField(label="Avatar image", required=False, widget=forms.FileInput(
+    avatar = forms.ImageField(label="Avatar image", required=False, widget=forms.FileInput(
         attrs={"class": "col-md-9 pe-5 mb-3"}))
+    username = forms.CharField(disabled=True)
 
     class Meta:
         model = User
@@ -105,5 +110,16 @@ class SettingsForm(forms.ModelForm):
         widgets = {
             "username": forms.TextInput(attrs={"class": "mb-3"}),
             "first_name": forms.TextInput(attrs={"class": "mb-3"}),
-            "email": forms.TextInput(attrs={"class": "mb-3"}),
+            "email": forms.EmailInput(attrs={"class": "mb-3"}),
         }
+
+
+    def save(self):
+        user = super().save()
+
+        profile = user.profile
+        if self.cleaned_data['avatar']:
+            profile.avatar = self.cleaned_data['avatar']
+        profile.save()
+
+        return user

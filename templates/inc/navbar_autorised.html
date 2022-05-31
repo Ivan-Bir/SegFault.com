@@ -22,8 +22,10 @@
           <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
           <button class="btn btn-outline-success mr-10 navbar-autorised" type="submit">Search</button>
 
-          <a href="{% url "settings" %}"><img class="avatar-user" src="{% static "img/jailBot.PNG" %}"></a>
-
+          {% comment %} <a href="{% url "settings" %}"><img class="avatar-user" src="{% static "img/jailBot.PNG" %}"></a> {% endcomment %}
+          {%if request.user.profile.avatar %}
+            <a href="{% url "settings" %}"><img class="avatar-user" src="{{ request.user.profile.avatar.url }}"</a>
+          {% endif %}
           <a href="{% url "settings" %}" class="btn btn-outline-secondary navbar-settings-btn">Settings</a>
           <a href="{% url "logout" %}" class="btn btn-outline-secondary navbar-log-out-btn text-nowrap">Log out</a>
 

@@ -11,7 +11,7 @@
         {% comment %} <div class="alert alert-warning" role="alert">
             Sorry, this email address is already regisred!
         </div> {% endcomment %}
-        <form action="/signup/" method="POST">
+        <form action="/signup/"  method="post", enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}
             <button type="submit" class="btn btn-primary">Register</button>
