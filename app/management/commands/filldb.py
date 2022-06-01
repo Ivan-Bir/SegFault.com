@@ -77,8 +77,6 @@ class Command(BaseCommand):
 
         question_list = list()
         for i in range(count):
-            if (i % 10000 == 0):
-                print(f"PROGRESS {i / count * 100}%")
             text = self.faker.paragraph(random.randint(7, 20))
             profile_id = random.randint(min_id_prof, max_id_prof)
             title = self.faker.paragraph(random.randint(7, 20))
@@ -97,7 +95,6 @@ class Command(BaseCommand):
 
 
         # q_list = Question.objects.bulk_create(question_list)
-        print("list_ques done")
         min_id_tag = Tag.objects.order_by('id')[0].id
         max_id_tag = Tag.objects.order_by('-id')[0].id
 

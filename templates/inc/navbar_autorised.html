@@ -19,6 +19,7 @@
           </li>
         </ul>
         <form class="d-flex search-input-autorise">
+          {% csrf_token %}
           <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
           <button class="btn btn-outline-success mr-10 navbar-autorised" type="submit">Search</button>
 

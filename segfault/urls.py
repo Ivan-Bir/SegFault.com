@@ -31,6 +31,7 @@ urlpatterns = [
     path('signup/', views.signup, name="signup"),
     path('settings/', views.settings, name="settings"),
     path('logout/', views.logout, name='logout'),
+    path('like/',views.like_question, name='like_question')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

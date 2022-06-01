@@ -1,5 +1,6 @@
 
 from django.forms import model_to_dict
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from pkg_resources import require
 from paginator import paginate
@@ -234,3 +235,12 @@ def settings(request):
 def logout(request):
     auth.logout(request)
     return redirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required(login_url="login", redirect_field_name="continue")
+def like_question(request):
+    question_id = request.POST['question_id']
+    print(question_id)
+    question = Question.objects.get(id=question_id)
+    question.like(request.user.profile_related)
+    return JsonResponse({'likes': question.count_likes()})

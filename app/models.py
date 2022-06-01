@@ -50,7 +50,8 @@ class QuestionManager(models.Manager):
         return self.count_answers().order_by('publish_date')
 
     def hot(self):
-        return self.count_answers().order_by('-rating')
+        # return self.count_answers().order_by('counter_likes')
+        return self.annotate(count=Count('likequestion')).order_by('-count')
 
     def by_tag(self, tag):
         return self.count_answers().filter(tags__name=tag)
@@ -73,10 +74,23 @@ class Question(models.Model):
     counter_likes = models.IntegerField(default=0)
     counter_dislikes = models.IntegerField(default=0)
 
+    objects = QuestionManager()
+
+    def count_likes(self):
+        return LikeQuestion.objects.filter(question__id=self.id).count()
+
+    def like(self, profile):
+        like = LikeQuestion.objects.filter(question_id=self.id, profile=profile)
+        if like:
+            like.delete()
+        else:
+            like = LikeQuestion(question_id=self.id, profile=profile)
+            like.save()
+
     def __str__(self):
         return self.title
 
-    objects = QuestionManager()
+
 
 
 class AnswerManager(models.Manager):
