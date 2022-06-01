@@ -40,6 +40,9 @@ class QuestionManager(models.Manager):
     def count_answers(self):
         return self.annotate(answers=Count('answer', distinct=True))
 
+    def count_likes(self):
+        return self.likequestion_set.count()
+
     def new(self):
         return self.count_answers().order_by('-publish_date')
 
@@ -63,11 +66,12 @@ class Question(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     publish_date = models.DateTimeField(auto_now_add=True)
 
-    rating = models.IntegerField(default=0)
-
     counter_votes = models.IntegerField(default=0)
     counter_answers = models.IntegerField(default=0)
     counter_views = models.IntegerField(default=0)
+
+    counter_likes = models.IntegerField(default=0)
+    counter_dislikes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -101,6 +105,9 @@ class LikeQuestion(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
 
+class LikesAnswerManager(models.Model):
+    def get_likes(self):
+        print("1")
 
 class LikeAnswer(models.Model):
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE)

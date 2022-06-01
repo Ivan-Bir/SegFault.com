@@ -48,7 +48,8 @@ class SignUpForm(forms.ModelForm):
 
         user.save()
         profile = Profile.objects.create(user=user)
-        profile.avatar = self.cleaned_data['avatar']
+        if self.cleaned_data['avatar']:
+            profile.avatar = self.cleaned_data['avatar']
 
         if commit:
             profile.save()

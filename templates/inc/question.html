@@ -1,7 +1,10 @@
 {% load static %}
 <div class="row question">
     <div class="col-2">
-      <img class="avatar-question" src="{% static "img/3.jpg" %}">
+      {% comment %} <img class="avatar-question" src="{% static "img/3.jpg" %}"> {% endcomment %}
+      {% comment %} {%if request.user.profile.avatar %} {% endcomment %}
+          <img class="avatar-question" src="{{ question.profile.avatar.url }}">
+      {% comment %} {% endif %} {% endcomment %}
 
       <a class="btn"> <b>votes :</b>&nbsp {{question.counter_votes}}</a>
       <a class="btn btn-outline-success"> <b>answers:</b>&nbsp {{question.counter_answers}}</a>
@@ -27,7 +30,7 @@
           </button>
         </div>
 
-        <span class="text-success">25</span>
+        <span class="text-success">{{question.likequestion_set.count}}</span>
 
         <div class="btn likes-buttons">
           <button class="btn", type="button">
@@ -40,13 +43,13 @@
             </svg>
           </button>
         </div>
-        <span class="text-danger">13</span>
+        <span class="text-danger">7</span>
 
       </div>
 
       <div class="col-4 btn author-label">
         <span>
-          <p> <b>Author:</b>&nbsp <a href="{% url "tag" "user" %}">user@mail.ru</a> </p>
+          <p> <b>Author:</b>&nbsp <a href="{% url "tag" "user" %}">{{question.profile.user.username}}</a> </p>
         </span>
       </div>
 

@@ -204,10 +204,22 @@ def settings(request):
         initial_data['avatar'] = request.user.profile.avatar
         form = SettingsForm(initial=initial_data)
     if request.method == "POST":
-        form = SettingsForm(initial=request.POST, instance=request.user, files=request.FILES)
+        form = SettingsForm(request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect("settings")
+# def settings(request):
+#     if request.method == "GET":
+#         initial_data = model_to_dict(request.user)
+#         initial_data['avatar'] = request.user.profile.avatar
+#         form = SettingsForm(initial=initial_data)
+#     if request.method == "POST":
+#         initial_data = request.POST
+#         instance = request.user
+#         form = SettingsForm(request.POST, instance=instance, files=request.FILES)
+#         if form.is_valid():  # add check existing
+#             form.save()
+#             return redirect("settings")
 
     content = {
         "active_users": top_users,
