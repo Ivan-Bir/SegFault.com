@@ -107,6 +107,7 @@ class Answer(models.Model):
     publish_date = models.DateTimeField(auto_now_add=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
+    # rating
     objects = AnswerManager()
 
 
@@ -118,6 +119,12 @@ class LikeQuestion(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
+
+# class DisikeQuestion(models.Model):
+#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+#     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#     pub_date = models.DateTimeField(auto_now_add=True)
+
 
 class LikesAnswerManager(models.Model):
     def get_likes(self):

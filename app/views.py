@@ -209,18 +209,6 @@ def settings(request):
         if form.is_valid():
             form.save()
             return redirect("settings")
-# def settings(request):
-#     if request.method == "GET":
-#         initial_data = model_to_dict(request.user)
-#         initial_data['avatar'] = request.user.profile.avatar
-#         form = SettingsForm(initial=initial_data)
-#     if request.method == "POST":
-#         initial_data = request.POST
-#         instance = request.user
-#         form = SettingsForm(request.POST, instance=instance, files=request.FILES)
-#         if form.is_valid():  # add check existing
-#             form.save()
-#             return redirect("settings")
 
     content = {
         "active_users": top_users,
@@ -242,5 +230,5 @@ def like_question(request):
     question_id = request.POST['question_id']
     print(question_id)
     question = Question.objects.get(id=question_id)
-    question.like(request.user.profile_related)
+    question.like(request.user.profile)
     return JsonResponse({'likes': question.count_likes()})
