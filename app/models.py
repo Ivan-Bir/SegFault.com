@@ -92,6 +92,10 @@ class Answer(models.Model):
     objects = AnswerManager()
 
 
+class LikesQuestionManager(models.Model):
+    def get_likes(self):
+        print("1")
+
 class LikeQuestion(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
